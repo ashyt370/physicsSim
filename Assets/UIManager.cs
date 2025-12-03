@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,6 +8,9 @@ public class UIManager : MonoBehaviour
     private GameObject InteractionHint;
 
     public static UIManager instance;
+
+    [SerializeField]
+    private TextMeshProUGUI bulletAmountTMP;
 
     private void Awake()
     {
@@ -22,5 +26,10 @@ public class UIManager : MonoBehaviour
     public void HideInteractionHint()
     {
         InteractionHint.SetActive(false);
+    }
+
+    public void UpdateBulletAmount(float f)
+    {
+        bulletAmountTMP.text = f.ToString();
     }
 }

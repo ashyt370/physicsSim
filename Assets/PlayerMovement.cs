@@ -15,9 +15,15 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 5f;
     public float cameraRotationSpeed = 90f;
     public float jumpForce = 50f;
+    public float shootForce = 100f;
+    public Transform shootPoint;
 
     private Vector2 moveDirection;
     private Vector2 mouseMove;
+
+    public GameObject bulletPrefab;
+
+    public int bulletAmount = 10;
 
     private void Awake()
     {
@@ -30,6 +36,34 @@ public class PlayerMovement : MonoBehaviour
         lookAction.Enable();
 
         inputActions.FindActionMap("Player").FindAction("Jump").performed += Jump;
+        inputActions.FindActionMap("Player").FindAction("Attack").performed += Shoot;
+    }
+
+    private void Start()
+    {
+        UIManager.instance.UpdateBulletAmount(bulletAmount);
+    }
+
+    private void Shoot(InputAction.CallbackContext obj)
+    {
+        if(bulletAmount > 0)
+        {
+            GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation, null);
+            b.GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
+            Destroy(b, 5f);
+            AddBullet(-1);
+        }
+        else
+        {
+            Debug.Log("no bullet");
+        }
+        
+    }
+
+    public void AddBullet(int amount)
+    {
+        bulletAmount += amount;
+        UIManager.instance.UpdateBulletAmount(bulletAmount);
     }
 
     private void Jump(InputAction.CallbackContext obj)

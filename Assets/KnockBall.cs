@@ -10,7 +10,7 @@ public class KnockBall : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Vector3 forceDirection = (collision.transform.position - transform.position).normalized;
+            Vector3 forceDirection = (transform.position - collision.transform.position).normalized;
             forceDirection.y = hitUpForce;
 
             collision.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * hitForce, ForceMode.Impulse);              

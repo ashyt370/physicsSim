@@ -9,6 +9,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private InputActionAsset inputActions;
 
+    [HideInInspector]
     public Interactable currentInteractable;
 
     private void Awake()

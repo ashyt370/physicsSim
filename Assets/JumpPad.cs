@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class JumpPad : Interactable
+public class JumpPad : MonoBehaviour
 {
     public float jumpForce = 70;
-    public override void Interact(GameObject player)
+
+    public void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<Rigidbody>().AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        if(other.GetComponent<Rigidbody>())
+        {
+            other.GetComponent<Rigidbody>().AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        }
     }
+
 
 
 }
