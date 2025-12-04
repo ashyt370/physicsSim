@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Player
+  m_Name: M_Key
   m_Shader: {fileID: -6465566751694194690, guid: b4ce46b6d924f4e4080a46cc733bc3fc, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -108,7 +108,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rim_Intensity: 1.5
-    - _ShadowStrength: 0
+    - _ShadowStrength: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -120,7 +120,7 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.5736578, g: 0.8396226, b: 0.18614274, a: 1}
+    - _BaseColor: {r: 0.9339623, g: 0.72782993, b: 0.074893214, a: 1}
     - _Color: {r: 0.5736578, g: 0.8396226, b: 0.18614271, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}

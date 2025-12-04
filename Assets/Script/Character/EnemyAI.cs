@@ -116,6 +116,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // If its bullet
         if(collision.gameObject.CompareTag("Bullet"))
         {
             HP--;
@@ -128,6 +129,12 @@ public class EnemyAI : MonoBehaviour
             {
                 currentState = EnemyState.Fleeing;
             }    
+        }
+
+        // If its player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            UIManager.instance.ShowLoseScreen();
         }
     }
 }

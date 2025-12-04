@@ -15,13 +15,13 @@ public class Door : Interactable
         }
         else
         {
-            Debug.Log("Need Key£º " + keyID);
+            UIManager.instance.ShowKeyRequiredHint();
         }
     }
 
     public void OpenDoor()
     {
-        Destroy(gameObject);
+        gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
     }
 
 

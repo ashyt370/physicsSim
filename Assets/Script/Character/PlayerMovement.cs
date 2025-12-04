@@ -25,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
 
     public int bulletAmount = 10;
 
+    private Vector3 originPosition;
+    private Quaternion originRotation;
+
+    public float resetFallY = -20;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,16 +47,26 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         UIManager.instance.UpdateBulletAmount(bulletAmount);
+
+        originPosition = gameObject.transform.position;
+        originRotation = gameObject.transform.rotation;
     }
 
     private void Shoot(InputAction.CallbackContext obj)
     {
         if(bulletAmount > 0)
         {
-            GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation, null);
-            b.GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
-            Destroy(b, 5f);
-            AddBullet(-1);
+            if(bulletPrefab && shootPoint)
+            {
+                GameObject b = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation, null);
+
+                b.GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
+                AddBullet(-1);
+                Destroy(b, 5f);
+            }
+
+
+            
         }
         else
         {
@@ -73,6 +88,15 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         
+    }
+
+    private void Update()
+    {
+        if(gameObject.transform.position.y <= resetFallY)
+        {
+            
+            ResetPlayer();
+        }
     }
 
     private void FixedUpdate()
@@ -110,6 +134,21 @@ public class PlayerMovement : MonoBehaviour
         {
             isGround = false;
         }
+    }
+
+
+    private void ResetPlayer()
+    {
+        Debug.Log("reset player");
+
+        transform.position = originPosition;
+        transform.rotation = originRotation;
+    }
+
+    public void ChangeNewResetPoint(Vector3 v, Quaternion q)
+    {
+        originRotation = q;
+        originPosition = v;
     }
 
 
