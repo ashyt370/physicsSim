@@ -123,7 +123,7 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("Enemy got hit");
             if(HP <= 0)
             {
-                Destroy(gameObject);
+                GetComponent<Collider>().enabled = false;
             }
             if(HP <= fleeHP)
             {

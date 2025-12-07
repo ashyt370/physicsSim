@@ -64,9 +64,7 @@ public class PlayerMovement : MonoBehaviour
                 AddBullet(-1);
                 Destroy(b, 5f);
             }
-
-
-            
+        
         }
         else
         {
@@ -93,8 +91,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if(gameObject.transform.position.y <= resetFallY)
-        {
-            
+        {   
             ResetPlayer();
         }
     }

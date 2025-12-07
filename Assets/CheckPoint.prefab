@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2112375431035563271}
   - component: {fileID: 4401983780428305606}
   - component: {fileID: 7741540810583324966}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15688803678952875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2465, y: 1.271, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24650002, y: 1.271, z: 0}
   m_LocalScale: {x: 0.5070828, y: 0.31114924, z: 0.039357}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8669204229836726480}
+  m_Father: {fileID: 5792746123312808352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2112375431035563271
 MeshFilter:
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5701594336389538821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +142,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5379580945184461316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2183100064637377276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5792746123312808352}
+  - component: {fileID: 7060801020450157644}
+  m_Layer: 3
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5792746123312808352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183100064637377276}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4895423774791110663}
+  - {fileID: 5095983430298882570}
+  m_Father: {fileID: 8669204229836726480}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7060801020450157644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183100064637377276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2971c6c1c821946888de1c6131b527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemFloating
+  floatValue: 2
+  speed: 1
 --- !u!1 &3420284872984713225
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5379580945184461316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +235,7 @@ GameObject:
   - component: {fileID: 2649283392490982370}
   - component: {fileID: 4411295828699566247}
   - component: {fileID: 2424260991301935115}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,12 +250,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7009438682949998831}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0081, y: 0.93930006, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.008100033, y: 0.93930006, z: 0}
   m_LocalScale: {x: -0.04221168, y: 1.0350578, z: 0.082087}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8669204229836726480}
+  m_Father: {fileID: 5792746123312808352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2649283392490982370
 MeshFilter:
@@ -297,7 +345,7 @@ GameObject:
   - component: {fileID: 8669204229836726480}
   - component: {fileID: 4402173399005420882}
   - component: {fileID: 8516347978357307051}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,8 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4895423774791110663}
-  - {fileID: 5095983430298882570}
+  - {fileID: 5792746123312808352}
   m_Father: {fileID: 5379580945184461316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4402173399005420882
