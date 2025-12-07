@@ -128,6 +128,7 @@ public class EnemyAI : MonoBehaviour
             if(HP <= fleeHP)
             {
                 currentState = EnemyState.Fleeing;
+                FlickerEye();
             }    
         }
 
@@ -136,6 +137,11 @@ public class EnemyAI : MonoBehaviour
         {
             UIManager.instance.ShowLoseScreen();
         }
+    }
+
+    private void FlickerEye()
+    {
+        GetComponentInChildren<MaterialFlicker>().isFlicker = true;
     }
 }
 
