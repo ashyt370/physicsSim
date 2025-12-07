@@ -53,7 +53,11 @@ public class EnemyAI : MonoBehaviour
                 // If player is in chase range, set state to chasing player
                 if(distance2Player <= chaseDistance)
                 {
-                    currentState = EnemyState.ChasingPlayer;
+                    float rand = Random.value; 
+                    if (rand < 0.8f)
+                        currentState = EnemyState.ChasingPlayer;
+                    else
+                        Debug.Log("Enemy decided not to chase player");
                 }
                 // If the player reach the target patrol point
                 if(agent.remainingDistance <= 0.5f)
