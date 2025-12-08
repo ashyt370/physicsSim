@@ -4,14 +4,12 @@ public class JumpPad : MonoBehaviour
 {
     public float jumpForce = 70;
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.GetComponent<Rigidbody>())
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            other.GetComponent<Rigidbody>().AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Acceleration);
         }
     }
-
-
-
 }

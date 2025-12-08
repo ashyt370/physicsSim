@@ -9,6 +9,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("TutorialScene");
+    }
+
     public void LoadGame()
     {
         SceneManager.LoadScene("GameScene");

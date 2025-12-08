@@ -8,6 +8,7 @@ public enum EnemyState
     ChasingPlayer,
     Fleeing,
     Returning,
+    Dead,
 }
 
 public class EnemyAI : MonoBehaviour
@@ -97,6 +98,10 @@ public class EnemyAI : MonoBehaviour
                 Vector3 fleePosition = new Vector3(-target.position.x, 0, -target.position.z);
                 agent.SetDestination(fleePosition);
                 break;
+
+            case EnemyState.Dead:
+                agent.isStopped = true;    
+                break;
             default:
                 Debug.LogError("no state");
                 break;
@@ -123,11 +128,14 @@ public class EnemyAI : MonoBehaviour
         // If its bullet
         if(collision.gameObject.CompareTag("Bullet"))
         {
-            HP--;
-            Debug.Log("Enemy got hit");
+            HP--;        
             if(HP <= 0)
             {
                 GetComponent<Collider>().enabled = false;
+                Debug.Log("Enemy got dead");
+                currentState = EnemyState.Dead;
+
+                return;
             }
             if(HP <= fleeHP)
             {
