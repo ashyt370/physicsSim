@@ -30,6 +30,8 @@ public class EnemyAI : MonoBehaviour
     public int HP = 3;
     public int fleeHP = 1;
 
+    public GameObject hitParticlePrefab;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -128,11 +130,13 @@ public class EnemyAI : MonoBehaviour
         // If its bullet
         if(collision.gameObject.CompareTag("Bullet"))
         {
+            // Prticle Effect
+            Instantiate(hitParticlePrefab, collision.contacts[0].point, Quaternion.identity);
+
             HP--;        
             if(HP <= 0)
             {
-                GetComponent<Collider>().enabled = false;
-                Debug.Log("Enemy got dead");
+                //GetComponent<Collider>().enabled = false;
                 currentState = EnemyState.Dead;
 
                 return;
@@ -141,7 +145,9 @@ public class EnemyAI : MonoBehaviour
             {
                 currentState = EnemyState.Fleeing;
                 FlickerEye();
-            }    
+            }
+
+
         }
 
         // If its player

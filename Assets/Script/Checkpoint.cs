@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("checkpoint");
             other.GetComponent<PlayerMovement>().ChangeNewResetPoint(playerRespawnTransform.transform.position, playerRespawnTransform.transform.rotation);
         }
     }

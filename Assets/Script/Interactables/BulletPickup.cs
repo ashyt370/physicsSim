@@ -6,6 +6,7 @@ public class BulletPickup : Interactable
     public override void Interact(GameObject player)
     {
         player.GetComponent<PlayerMovement>().AddBullet(bulletAmount);
+        UIManager.instance.HideInteractionHint();
         Destroy(gameObject);
     }
 }
