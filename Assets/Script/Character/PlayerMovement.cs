@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
-    public float moveForce = 20f;
+    public float moveForce = 10f;
     public float maxSpeed = 5f;
-    public float cameraRotationSpeed = 90f;
-    public float jumpForce = 50f;
-    public float shootForce = 100f;
+    public float cameraRotationSpeed = 120f;
+    public float jumpForce = 5f;
+    public float shootForce = 20f;
     public Transform shootPoint;
 
     private Vector2 moveDirection;
