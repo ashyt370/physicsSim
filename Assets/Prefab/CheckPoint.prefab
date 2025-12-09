@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2112375431035563271}
   - component: {fileID: 4401983780428305606}
   - component: {fileID: 7741540810583324966}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5701594336389538821}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5792746123312808352}
   - component: {fileID: 7060801020450157644}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5379580945184461316}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 2649283392490982370}
   - component: {fileID: 4411295828699566247}
   - component: {fileID: 2424260991301935115}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 8669204229836726480}
   - component: {fileID: 4402173399005420882}
   - component: {fileID: 8516347978357307051}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6048474478836712015}
   - component: {fileID: 7114203668575487958}
   - component: {fileID: 7918036781324100873}
-  m_Layer: 0
+  - component: {fileID: 5082240134251037082}
+  m_Layer: 8
   m_Name: JumpPad
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -99,7 +100,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948984929580616035}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9a352617661857e40aa82b4fbf90f673, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -133,7 +134,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948984929580616035}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9a352617661857e40aa82b4fbf90f673, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -147,3 +148,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0.78, z: 0}
+--- !u!54 &5082240134251037082
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948984929580616035}
+  serializedVersion: 5
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
