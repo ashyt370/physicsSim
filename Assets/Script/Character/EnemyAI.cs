@@ -93,12 +93,8 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case EnemyState.Fleeing:
-                if(distance2Player > returnDistance)
-                {
-                    currentState = EnemyState.Returning;
-                }
-                Vector3 fleePosition = new Vector3(-target.position.x, 0, -target.position.z);
-                agent.SetDestination(fleePosition);
+                FleeFromPlayer();
+
                 break;
 
             case EnemyState.Dead:
@@ -107,6 +103,47 @@ public class EnemyAI : MonoBehaviour
             default:
                 Debug.LogError("no state");
                 break;
+        }
+
+    }
+
+    private float fleeDistance = 5f;
+    private Vector3 lastFleeDirection;
+    private void FleeFromPlayer()
+    {
+        Vector3 fleeDirection = (transform.position - target.position).normalized;
+
+        Vector3 fleeTarget = transform.position + fleeDirection * fleeDistance;
+
+        NavMeshPath path = new NavMeshPath();
+
+        // If there's a path
+        if(NavMesh.CalculatePath(transform.position,fleeTarget,NavMesh.AllAreas,path))
+        {
+            lastFleeDirection = (path.corners[1] - transform.position).normalized;
+        }
+        // If there's not path
+        else
+        {
+            Vector3 changeDirection = Vector3.Cross(Vector3.up, fleeDirection).normalized;
+            fleeTarget = transform.position + changeDirection * fleeDistance;
+
+            if(NavMesh.CalculatePath(transform.position, fleeTarget, NavMesh.AllAreas, path))
+            {
+                lastFleeDirection = (path.corners[1] - transform.position).normalized;
+            }
+            // If still no
+            else
+            {
+                lastFleeDirection = fleeDirection;
+            }
+        }
+
+        agent.SetDestination(transform.position + lastFleeDirection * 3f);
+
+        if(Vector3.Distance(target.position,transform.position) > returnDistance)
+        {
+            currentState = EnemyState.Returning;
         }
 
     }
@@ -123,6 +160,25 @@ public class EnemyAI : MonoBehaviour
             currentPatrolIndex = 0;
         }
 
+    }
+
+
+    public GameObject projectilePrefab;
+    public float shootTime = 2;
+    private void EnemyShoot()
+    {
+        GameObject obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+        Vector3 distance = target.position - transform.position;
+        Vector3 horizontalDistance = new Vector3(distance.x, 0, distance.z);
+        float horizontalVelocity = horizontalDistance.magnitude / shootTime;
+
+        float verticalVelocity = (distance.y - 0.5f * Physics.gravity.y * shootTime * shootTime) / shootTime;
+
+        Vector3 finalVelocity = horizontalDistance.normalized * horizontalVelocity;
+        finalVelocity.y = verticalVelocity;
+
+        obj.GetComponent<Rigidbody>().linearVelocity = finalVelocity;
     }
 
     private void OnCollisionEnter(Collision collision)
