@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : Interactable
 {
     // the keyID required
     public int keyID;
 
+    private NavMeshObstacle navMeshObstacle;
     public override void Interact(GameObject player)
     {
         UIManager.instance.HideInteractionHint();
@@ -22,6 +24,7 @@ public class Door : Interactable
     public void OpenDoor()
     {
         gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
+        navMeshObstacle.carving = false;
     }
 
 

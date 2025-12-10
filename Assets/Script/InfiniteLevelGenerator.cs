@@ -5,7 +5,7 @@ public class InfiniteLevelGenerator : MonoBehaviour
 {
 
     public Transform player;
-    public GameObject tilePrefab;
+    public List<GameObject> tilePrefabs;
 
     public float tileSize = 50f;
 
@@ -38,9 +38,9 @@ public class InfiniteLevelGenerator : MonoBehaviour
 
                 if(!tiles.ContainsKey(coordination))
                 {
-                    Debug.Log("instiate");
                     Vector3 position = new Vector3(coordination.x * tileSize, 0, coordination.y * tileSize);
-                    tiles[coordination] = Instantiate(tilePrefab, position, Quaternion.identity);
+                    int rand = Random.Range(0, tilePrefabs.Count);
+                    tiles[coordination] = Instantiate(tilePrefabs[rand], position, Quaternion.identity);
                 }
             }
         }
