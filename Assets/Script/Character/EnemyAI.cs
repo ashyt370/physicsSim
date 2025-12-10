@@ -14,16 +14,16 @@ public enum EnemyState
 public class EnemyAI : MonoBehaviour
 {
 
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public Transform target; // Player
 
     public List<Transform> patrolPoints;
-    private int currentPatrolIndex = 0;
+    public int currentPatrolIndex = 0;
 
     public float chaseDistance = 10f;
     public float returnDistance = 15f;
 
-    private Vector3 startPosition;
+    public Vector3 startPosition;
 
     public EnemyState currentState = EnemyState.Patrolling;
 
@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     public int fleeHP = 1;
 
     public GameObject hitParticlePrefab;
+
+    public int ammoAmount = 0;
 
     private void Awake()
     {
@@ -109,7 +111,7 @@ public class EnemyAI : MonoBehaviour
 
     private float fleeDistance = 5f;
     private Vector3 lastFleeDirection;
-    private void FleeFromPlayer()
+    public void FleeFromPlayer()
     {
         Vector3 fleeDirection = (transform.position - target.position).normalized;
 
@@ -165,20 +167,30 @@ public class EnemyAI : MonoBehaviour
 
     public GameObject projectilePrefab;
     public float shootTime = 2;
-    private void EnemyShoot()
+    public void EnemyShoot()
     {
-        GameObject obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        if(ammoAmount > 0)
+        {
+            GameObject obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-        Vector3 distance = target.position - transform.position;
-        Vector3 horizontalDistance = new Vector3(distance.x, 0, distance.z);
-        float horizontalVelocity = horizontalDistance.magnitude / shootTime;
+            Vector3 distance = target.position - transform.position;
+            Vector3 horizontalDistance = new Vector3(distance.x, 0, distance.z);
+            float horizontalVelocity = horizontalDistance.magnitude / shootTime;
 
-        float verticalVelocity = (distance.y - 0.5f * Physics.gravity.y * shootTime * shootTime) / shootTime;
+            float verticalVelocity = (distance.y - 0.5f * Physics.gravity.y * shootTime * shootTime) / shootTime;
 
-        Vector3 finalVelocity = horizontalDistance.normalized * horizontalVelocity;
-        finalVelocity.y = verticalVelocity;
+            Vector3 finalVelocity = horizontalDistance.normalized * horizontalVelocity;
+            finalVelocity.y = verticalVelocity;
 
-        obj.GetComponent<Rigidbody>().linearVelocity = finalVelocity;
+            obj.GetComponent<Rigidbody>().linearVelocity = finalVelocity;
+            ammoAmount -= 1;
+
+            if(ammoAmount < 0)
+            {
+                ammoAmount = 0;
+            }
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -216,6 +228,34 @@ public class EnemyAI : MonoBehaviour
     private void FlickerEye()
     {
         GetComponentInChildren<MaterialFlicker>().isFlicker = true;
+    }
+
+
+    public bool isPlayerInChaseRange()
+    {
+        float distance2Player = Vector3.Distance(target.position, transform.position);
+        if (distance2Player <= chaseDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool isEnemyHPInDanger()
+    {
+        if (HP <= fleeHP) return true;
+        else return false;
+    }
+
+    public bool isEnemyOutOfReturnRange()
+    {
+        float distance2Player = Vector3.Distance(target.position, transform.position);
+        if (distance2Player > returnDistance) return true;
+        else return false;
+
     }
 }
 
