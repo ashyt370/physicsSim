@@ -23,5 +23,10 @@ public abstract class EnemyStateBase
 
     }
 
+    public virtual void ChangeState(EnemyStateBase newstate)
+    {
+
+    }
+
 
 }

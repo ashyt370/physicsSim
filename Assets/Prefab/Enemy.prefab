@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 988553691469770007}
   m_Layer: 9
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,17 +57,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1710fee0f2295e647a0486e3e41b114b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  agent: {fileID: 0}
   target: {fileID: 0}
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentPatrolIndex: 0
+  shootDistance: 6
   chaseDistance: 5
   returnDistance: 8
-  currentState: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  maxHP: 3
   HP: 3
   fleeHP: 1
   hitParticlePrefab: {fileID: 5921031242978916008, guid: 052fdf9b159647e42902485f0ba4b0c0, type: 3}
+  ammoAmount: 3
+  projectilePrefab: {fileID: 7575463351423828843, guid: 531709a944403014b8d4aa7ed9a585bd, type: 3}
+  shootTime: 2
 --- !u!195 &7458025716347868172
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -173,6 +180,7 @@ GameObject:
   - component: {fileID: 8590167669916428248}
   - component: {fileID: 160625702685285033}
   - component: {fileID: 8833594231107961995}
+  - component: {fileID: 6610615715134796661}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -228,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22a184bf3b78dba40a0d8645d09089b5, type: 2}
+  - {fileID: 2100000, guid: 05132bdd68e65a94eb521146f4938bae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,3 +280,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6610615715134796661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470965706668662989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b3c1f5540d8c04c88a363aba2a487f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaterialFlicker
+  color2: {r: 0, g: 0.8713033, b: 1, a: 0}
+  speed: 10
+  isFlicker: 0

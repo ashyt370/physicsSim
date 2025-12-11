@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI bulletAmountTMP;
     [SerializeField]
     private GameObject loseScreen;
+    [SerializeField]
+    private Slider hpSlider;
 
     private void Awake()
     {
@@ -24,6 +27,12 @@ public class UIManager : MonoBehaviour
 
         instance = this;
     }
+
+    public void UpdateHP(float per)
+    {
+        hpSlider.value = per;
+    }
+
 
     public void ShowKeyRequiredHint()
     {

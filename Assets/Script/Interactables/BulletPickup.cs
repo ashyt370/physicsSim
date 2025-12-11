@@ -9,4 +9,19 @@ public class BulletPickup : Interactable
         UIManager.instance.HideInteractionHint();
         Destroy(gameObject);
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            UIManager.instance.ShowInteractionHint();
+
+            other.GetComponent<PlayerInteraction>().currentInteractable = this;
+        }
+        else if(other.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            other.GetComponent<EnemyAI>().ammoAmount += bulletAmount;
+        }
+    }
 }

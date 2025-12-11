@@ -19,9 +19,7 @@ public class FleeState : EnemyStateBase
     public override void Update()
     {
         Vector3 fleeDirection = (enemyAI.transform.position - enemyAI.target.position).normalized;
-
         Vector3 fleeTarget = enemyAI.transform.position + fleeDirection * fleeDistance;
-
         NavMeshPath path = new NavMeshPath();
 
         // If there's a path
