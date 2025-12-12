@@ -10,7 +10,7 @@ public class PatrolState :EnemyStateBase
 
     public override void Exit()
     {
-        base.Exit();
+        enemyAI.currentPatrolIndex = 0;
     }
 
     public override void Update()

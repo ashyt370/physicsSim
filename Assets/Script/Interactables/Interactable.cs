@@ -4,7 +4,7 @@ public abstract class Interactable : MonoBehaviour
 {
     public abstract void Interact(GameObject player);
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {

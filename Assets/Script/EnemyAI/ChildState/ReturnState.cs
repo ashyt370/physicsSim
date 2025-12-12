@@ -5,7 +5,7 @@ public class ReturnState : EnemyStateBase
     public ReturnState(EnemyAI enemyAI) : base(enemyAI) { }
     public override void Enter()
     {
-        base.Enter();
+        enemyAI.agent.SetDestination(enemyAI.startPosition);
     }
 
     public override void Exit()
@@ -15,6 +15,6 @@ public class ReturnState : EnemyStateBase
 
     public override void Update()
     {
-        enemyAI.agent.SetDestination(enemyAI.startPosition);
+        
     }
 }

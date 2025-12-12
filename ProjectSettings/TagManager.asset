@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Floor
   - Bullet
+  - Enemy
+  - Ammo
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Object
   - Enemy
   - WallFloor
-  - 
+  - EnemyBullet
   - 
   - 
   - 

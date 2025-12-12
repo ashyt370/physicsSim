@@ -2,31 +2,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyState
-{
-    Patrolling,
-    ChasingPlayer,
-    Fleeing,
-    Returning,
-    Dead,
-}
 
 public class EnemyAI : MonoBehaviour
 {
-
+    [HideInInspector]
     public NavMeshAgent agent;
     public Transform target; // Player
 
     public List<Transform> patrolPoints;
+    [HideInInspector]
     public int currentPatrolIndex = 0;
 
+    public float shootDistance = 6f;
     public float chaseDistance = 10f;
     public float returnDistance = 15f;
 
+    [HideInInspector]
     public Vector3 startPosition;
 
-    public EnemyState currentState = EnemyState.Patrolling;
+    public EnemyStateBase currentParentState;
 
+    public int maxHP = 3;
     public int HP = 3;
     public int fleeHP = 1;
 
@@ -43,127 +39,15 @@ public class EnemyAI : MonoBehaviour
     {
         startPosition = transform.position;
 
-        // the default state is patrolling
-        GoToNextPatrolPoint();
+        currentParentState = new CombatState(this);
+        currentParentState.Enter();
     }
 
     private void Update()
     {
-        // determine factor: the distance between player
-        float distance2Player = Vector3.Distance(target.position, transform.position);
-
-        switch(currentState)
-        {
-            case EnemyState.Patrolling:
-                // If player is in chase range, set state to chasing player
-                if(distance2Player <= chaseDistance)
-                {
-                    float rand = Random.value; 
-                    if (rand < 0.8f)
-                        currentState = EnemyState.ChasingPlayer;
-                    else
-                        Debug.Log("Enemy decided not to chase player");
-                }
-                // If the player reach the target patrol point
-                if(agent.remainingDistance <= 0.5f)
-                {
-                    GoToNextPatrolPoint();
-                }
-                break;
-            case EnemyState.ChasingPlayer:
-                // If player is too far away, return the enemy
-                if(distance2Player > returnDistance)
-                {
-                    currentState = EnemyState.Returning;
-                }
-
-                agent.SetDestination(target.position);
-
-                break;
-            case EnemyState.Returning:
-                // If the player is back in chase distance
-                if(distance2Player <= chaseDistance)
-                {
-                    currentState = EnemyState.ChasingPlayer;
-                }
-                if(agent.remainingDistance < 0.5)
-                {
-                    currentState = EnemyState.Patrolling;
-                    GoToNextPatrolPoint();
-                }
-                agent.SetDestination(startPosition);
-                break;
-
-            case EnemyState.Fleeing:
-                FleeFromPlayer();
-
-                break;
-
-            case EnemyState.Dead:
-                agent.isStopped = true;    
-                break;
-            default:
-                Debug.LogError("no state");
-                break;
-        }
-
+        currentParentState.Update();
     }
-
-    private float fleeDistance = 5f;
-    private Vector3 lastFleeDirection;
-    public void FleeFromPlayer()
-    {
-        Vector3 fleeDirection = (transform.position - target.position).normalized;
-
-        Vector3 fleeTarget = transform.position + fleeDirection * fleeDistance;
-
-        NavMeshPath path = new NavMeshPath();
-
-        // If there's a path
-        if(NavMesh.CalculatePath(transform.position,fleeTarget,NavMesh.AllAreas,path))
-        {
-            lastFleeDirection = (path.corners[1] - transform.position).normalized;
-        }
-        // If there's not path
-        else
-        {
-            Vector3 changeDirection = Vector3.Cross(Vector3.up, fleeDirection).normalized;
-            fleeTarget = transform.position + changeDirection * fleeDistance;
-
-            if(NavMesh.CalculatePath(transform.position, fleeTarget, NavMesh.AllAreas, path))
-            {
-                lastFleeDirection = (path.corners[1] - transform.position).normalized;
-            }
-            // If still no
-            else
-            {
-                lastFleeDirection = fleeDirection;
-            }
-        }
-
-        agent.SetDestination(transform.position + lastFleeDirection * 3f);
-
-        if(Vector3.Distance(target.position,transform.position) > returnDistance)
-        {
-            currentState = EnemyState.Returning;
-        }
-
-    }
-
-    private void GoToNextPatrolPoint()
-    {
-        // Move agent
-        agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-
-        //Set patrol point to the next patrol points
-        currentPatrolIndex++;
-        if(currentPatrolIndex >= patrolPoints.Count)
-        {
-            currentPatrolIndex = 0;
-        }
-
-    }
-
+ 
 
     public GameObject projectilePrefab;
     public float shootTime = 2;
@@ -190,7 +74,6 @@ public class EnemyAI : MonoBehaviour
                 ammoAmount = 0;
             }
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -204,33 +87,22 @@ public class EnemyAI : MonoBehaviour
             HP--;        
             if(HP <= 0)
             {
-                //GetComponent<Collider>().enabled = false;
-                currentState = EnemyState.Dead;
-
+                currentParentState.ChangeState(new DeadState(this));
                 return;
             }
             if(HP <= fleeHP)
             {
-                currentState = EnemyState.Fleeing;
+                currentParentState.ChangeState(new FleeState(this));
                 FlickerEye();
             }
-
-
         }
 
-        // If its player
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            UIManager.instance.ShowLoseScreen();
-        }
     }
 
     private void FlickerEye()
     {
         GetComponentInChildren<MaterialFlicker>().isFlicker = true;
     }
-
-
     public bool isPlayerInChaseRange()
     {
         float distance2Player = Vector3.Distance(target.position, transform.position);
@@ -243,19 +115,64 @@ public class EnemyAI : MonoBehaviour
             return false;
         }
     }
-
+    public bool isPlayerInShootRange()
+    {
+        float distance2Player = Vector3.Distance(target.position, transform.position);
+        if (distance2Player <= shootDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool isEnemyHPInDanger()
     {
         if (HP <= fleeHP) return true;
         else return false;
     }
-
     public bool isEnemyOutOfReturnRange()
     {
         float distance2Player = Vector3.Distance(target.position, transform.position);
         if (distance2Player > returnDistance) return true;
         else return false;
 
+    }
+    public GameObject GetNearestAmmo()
+    {
+        GameObject[] ammos = GameObject.FindGameObjectsWithTag("Ammo");
+        GameObject nearest = null;
+
+        float minDistance = Mathf.Infinity;
+
+        foreach(GameObject a in ammos)
+        {
+            float distance = Vector3.Distance(transform.position, a.transform.position);
+            if(distance <= 50f)
+            {
+                NavMeshHit hit;
+                if(NavMesh.SamplePosition(a.transform.position,out hit,5f, NavMesh.AllAreas))
+                {
+                    if(distance < minDistance)
+                    {
+                        minDistance = distance;
+                        nearest = a;
+                    }
+                }
+            }
+        }
+        return nearest;
+    }
+
+    public void AddHP(int hp)
+    {
+        HP += hp;
+
+        if(HP> maxHP)
+        {
+            HP = maxHP;
+        }
     }
 }
 
