@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public Vector3 startPosition;
 
-    public EnemyStateBase currentParentState;
+    public CombatState currentParentState;
 
     public int maxHP = 3;
     public int HP = 3;
@@ -33,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        tmp = GetComponentInChildren<TextMeshPro>();
     }
 
     private void Start()
@@ -46,6 +48,14 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         currentParentState.Update();
+
+        UpdateVisualStateInGame();
+    }
+
+    private TextMeshPro tmp;
+    private void UpdateVisualStateInGame()
+    {
+        tmp.text = currentParentState.currentState.GetType().Name;
     }
  
 
@@ -174,5 +184,7 @@ public class EnemyAI : MonoBehaviour
             HP = maxHP;
         }
     }
+
+
 }
 
