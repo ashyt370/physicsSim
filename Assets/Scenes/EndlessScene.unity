@@ -3051,7 +3051,6 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: 6132159355500623638, guid: 7493860f801e8084b9711a9360f05163, type: 3}
   - {fileID: 1417218732540756035, guid: fa8b6b65ec240154aafa8b0f25b50a6e, type: 3}
-  - {fileID: 8058148406102757726, guid: 51b8c80f319faa54696564014542ac63, type: 3}
   tileSize: 50
 --- !u!4 &2106337631
 Transform:
