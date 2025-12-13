@@ -24,7 +24,6 @@ public class CombatState : EnemyStateBase
     public override void Enter()
     {
         currentState = new PatrolState(enemyAI);
-        Debug.Log("enter patrol");
         currentState.Enter();
 
         goals.Add(new Goal("Survive", 100, new FleeState(enemyAI)));
@@ -38,6 +37,14 @@ public class CombatState : EnemyStateBase
 
     public override void Update()
     {
+        if(forceState != null)
+        {
+            if(forceState.GetType() != currentState.GetType())
+            {
+                ChangeState(forceState);
+                return;
+            }            
+        }
         currentState.Update();
         //condition change
         // Is enemy is dead
@@ -59,8 +66,6 @@ public class CombatState : EnemyStateBase
         // return
         goals[5].isActive = (enemyAI.isEnemyHPInDanger() && enemyAI.isEnemyOutOfReturnRange()) || (currentState is PickupAmmoState && enemyAI.ammoAmount > 0);
 
-
-
         Goal activeGoal = null;
         int maxPriority = -1;
 
@@ -68,8 +73,28 @@ public class CombatState : EnemyStateBase
         {
             if(g.isActive && g.priority > maxPriority)
             {
-                maxPriority = g.priority;
-                activeGoal = g;
+                float prob = 1f;
+                switch(g.name)
+                {
+                    case "PickupAmmo":
+                        prob = 0.5f;
+                        break;
+                    case "Return":
+                        prob = 0.3f;
+                        break;
+                    case "ChasePlayer":
+                            prob = 0.8f;
+                        break;
+                }
+                if(Random.value <= prob)
+                {
+                    maxPriority = g.priority;
+                    activeGoal = g;
+                }
+                else
+                {
+                    Debug.Log("no chance to "+g.name);
+                }
             }
         }
 
@@ -77,53 +102,6 @@ public class CombatState : EnemyStateBase
         {
             ChangeState(activeGoal.targetState);
         }
-
-
-        /* if (currentState is PickupAmmoState && enemyAI.ammoAmount > 0)
-        {
-            ChangeState(new ReturnState(enemyAI));
-        }
-
-        else if(currentState is ShootState && enemyAI.GetNearestAmmo() != null && enemyAI.ammoAmount <= 0)
-        {
-            ChangeState(new PickupAmmoState(enemyAI));
-        }
-
-        else if (currentState is ShootState && enemyAI.ammoAmount <= 0)
-        {
-            ChangeState(new ReturnState(enemyAI));
-        }
-
-        else if(currentState is ReturnState && enemyAI.agent.remainingDistance <= 0.5f)
-        {
-            ChangeState(new PatrolState(enemyAI));
-            enemyAI.AddHP(1);
-        }
-
-        else if (enemyAI.ammoAmount > 0 && enemyAI.isPlayerInShootRange())
-        {
-            ChangeState(new ShootState(enemyAI));
-        }
-
-        // Is player is in range and enemy is not in danger
-        else if (enemyAI.isPlayerInChaseRange() && !enemyAI.isEnemyHPInDanger())
-        {
-            ChangeState(new ChasePlayerState(enemyAI));
-        }
-
-        // If Enemy is in danger and Player is far enough
-        else if (enemyAI.isEnemyHPInDanger() && enemyAI.isEnemyOutOfReturnRange())
-        {
-            ChangeState(new ReturnState(enemyAI));
-        }
-
-        // If Enemy is in danger and Player is still nearby
-        else if (enemyAI.isEnemyHPInDanger() && !enemyAI.isEnemyOutOfReturnRange())
-        {
-            ChangeState(new FleeState(enemyAI));
-        }
-*/
-
     }
 
 
@@ -132,8 +110,14 @@ public class CombatState : EnemyStateBase
         currentState.Exit();
         currentState = newstate;
         currentState.Enter();
+    }
 
-        Debug.Log(currentState.GetType().Name);
+
+    private EnemyStateBase forceState;
+
+    public void ForceChangeState(EnemyStateBase newstate)
+    {
+        forceState = newstate;
     }
 
 }
