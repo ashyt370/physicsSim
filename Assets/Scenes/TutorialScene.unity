@@ -21396,6 +21396,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59dc484144a97824693d4d28a3a954f5, type: 3}
+--- !u!1001 &6431338056674777850
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3115193443590978353, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_Name
+      value: Water Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.55769
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719251581445493977, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0e7dd1391ce97549adbdcfb579e31ba, type: 3}
 --- !u!1001 &6771285007603342557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21695,4 +21764,8 @@ SceneRoots:
   - {fileID: 2091102433}
   - {fileID: 6771285007603342557}
   - {fileID: 4648486512830876928}
+<<<<<<< HEAD
   - {fileID: 1577831018}
+=======
+  - {fileID: 6431338056674777850}
+>>>>>>> 475d7b5ab40452062b7f8ca35bdd52f85c079b47
