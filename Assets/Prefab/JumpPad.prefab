@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.67, y: 4.76, z: 8.21}
-  m_LocalScale: {x: 3.6159089, y: 0.34557, z: 3.568653}
+  m_LocalScale: {x: 4, y: 0.34557, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7785c6c5060387499c5874a076501b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpPad
-  jumpForce: 25
+  jumpForce: 250
 --- !u!65 &7918036781324100873
 BoxCollider:
   m_ObjectHideFlags: 0
