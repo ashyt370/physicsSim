@@ -1232,7 +1232,7 @@ MonoBehaviour:
   KeyRequiredHint: {fileID: 37482503524005846}
   bulletAmountTMP: {fileID: 6838358230349473013}
   loseScreen: {fileID: 2968813329140355389}
-  hpSlider: {fileID: 0}
+  hpSlider: {fileID: 1860049332181971198}
 --- !u!223 &6163439384499781873
 Canvas:
   m_ObjectHideFlags: 0

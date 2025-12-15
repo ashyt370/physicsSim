@@ -72,7 +72,7 @@ MonoBehaviour:
   maxHP: 3
   HP: 3
   fleeHP: 1
-  hitParticlePrefab: {fileID: 5921031242978916008, guid: 052fdf9b159647e42902485f0ba4b0c0, type: 3}
+  hitParticlePrefab: {fileID: 5430667154142148495, guid: 43dfeef9d3662df4baeff56366cc990c, type: 3}
   ammoAmount: 3
   projectilePrefab: {fileID: 7575463351423828843, guid: 531709a944403014b8d4aa7ed9a585bd, type: 3}
   shootTime: 2
