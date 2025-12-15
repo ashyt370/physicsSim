@@ -346,11 +346,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33557024}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &61368859 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7306344638576675975, guid: fdd1fd05f4571684e918ff64f2b07d61, type: 3}
-  m_PrefabInstance: {fileID: 5480120668947744844}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &64945364
 GameObject:
   m_ObjectHideFlags: 0
@@ -7773,15 +7768,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2320739944397070345, guid: ce4e89c1cf7ba00439c8974cf66d877c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 2320739944397070345, guid: ce4e89c1cf7ba00439c8974cf66d877c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 2320739944397070345, guid: ce4e89c1cf7ba00439c8974cf66d877c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 2320739944397070345, guid: ce4e89c1cf7ba00439c8974cf66d877c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7883,32 +7878,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7306344638576675975, guid: fdd1fd05f4571684e918ff64f2b07d61, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5480120668947744846}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd1fd05f4571684e918ff64f2b07d61, type: 3}
 --- !u!4 &5480120668947744845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5926673697454886448, guid: fdd1fd05f4571684e918ff64f2b07d61, type: 3}
   m_PrefabInstance: {fileID: 5480120668947744844}
   m_PrefabAsset: {fileID: 0}
---- !u!208 &5480120668947744846
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61368859}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &5810814235892311073
 PrefabInstance:
   m_ObjectHideFlags: 0
