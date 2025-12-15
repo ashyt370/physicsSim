@@ -38,6 +38,15 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("Destroy bullet");
+        }
+    }
+
     private void Awake()
     {
         inputActions = gameObject.GetComponent<PlayerMovement>().inputActions;

@@ -19,6 +19,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void LoadEndless()
+    {
+        SceneManager.LoadScene("EndlessScene");
+    }
+
     public void QuiyGame()
     {
         Application.Quit();
