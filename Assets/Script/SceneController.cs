@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("EndlessScene");
     }
 
-    public void QuiyGame()
+    public void QuitGame()
     {
         Application.Quit();
     }

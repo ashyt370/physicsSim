@@ -1394,6 +1394,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5dbca95d20f3aac478317fed9c2e3c6d, type: 3}
+--- !u!114 &610336885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1860049332181971198, guid: d3504e19c53e05b4d807bc78de13fd2e, type: 3}
+  m_PrefabInstance: {fileID: 1512507821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &646192749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1353167768364658, guid: 9d5020896759df44f9c483176cc3a697, type: 3}
@@ -2414,6 +2425,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1588298349719697183, guid: d3504e19c53e05b4d807bc78de13fd2e, type: 3}
+      propertyPath: hpSlider
+      value: 
+      objectReference: {fileID: 610336885}
     - target: {fileID: 2827348616289423455, guid: d3504e19c53e05b4d807bc78de13fd2e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
